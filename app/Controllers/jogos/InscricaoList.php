@@ -37,7 +37,7 @@ class InscricaoList{
     }
 
     public function deletaInscricao($cpf){
-        $inscricao = $this->inscricao->deletaInscricao($cpf);
+        $inscricao = $this->modeljogo->deletaInscricao($cpf);
 
         if ($inscricao['status'] == 200){
          

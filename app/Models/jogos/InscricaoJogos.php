@@ -146,8 +146,8 @@ class InscricaoJogos{
 
     function deletaInscricao($cpf){
         $sql = "
-            DELETE FROM inscricaoevento
-            WHERE cpf='$cpf'
+            DELETE FROM jogos
+            WHERE id='$cpf'
         ";
         if ($this->connect->getConnection()->query($sql) == true){
             return ["status" => 200, "resultado" => "Apagado com sucesso"];

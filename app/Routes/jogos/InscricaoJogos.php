@@ -68,11 +68,13 @@ class InscricaoJogos{
 
             if ($_SESSION['status'] == true){
                 if($_GET['dados']){
-                    $n = new \App\Controllers\inscricao\InscricaoList();
+                    $n = new \App\Controllers\jogos\InscricaoList();
                     $n->deletaInscricao($_GET['dados']);
-                    $response->redirect('/admin/inscricoes');
+                    $response->redirect('/admin/inscricoes/jogos');
                 }else{
-                    $response->redirect('/admin/inscricoes');
+                    echo "aqui";
+                    die;
+                    $response->redirect('/admin/inscricoes/jogos');
                 }
             }else{
                 $response->redirect('/login');
