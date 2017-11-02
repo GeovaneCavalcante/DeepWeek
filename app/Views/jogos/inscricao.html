@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h1 class="logo cursive" style="margin-top: 10%; font-family: cs; font-size: 400%; ">
+    Inscrição Jogos
+</h1>
+<br>
+<div class="content">
+
+    <div class="row">
+
+        <form role="form" action="/inscricao/jogos" method="post" style="color: white; ">
+           
+            <div class="container">
+                
+            <div class="row">
+                <div class="col-sm-12" style="text-align: center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-3">
+                                    <div class="form-group">
+                                            <h4><strong>Selecione o Game</strong> </h4>
+                                            <select   onchange="my()" class="form-control" id="sel" name="jogo">
+                                                <option>Selecione</option>
+                                                <option>League of Legends</option>
+                                                <option >Pro Evolution Soccer</option>
+                                                <option>Couter-Strike 1.6</option>
+                                            </select>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+            <br><br>
+            <div id="teste">  </div>
+
+      
+           
+           
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock content %}
+{% block footer %}
+{% endblock footer %}

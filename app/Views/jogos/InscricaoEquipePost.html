@@ -1,0 +1,176 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h1 class="logo cursive" style="margin-top: 10%; font-family: cs; font-size: 400%; ">
+    Inscrição Jogos
+</h1>
+<br>
+<div class="content">
+
+    <div class="row">
+
+        <form role="form" action="/inscricao/jogos" method="post" style="color: white; ">
+            <div class="container">
+                
+            <div class="row">
+                <div class="col-sm-12" style="text-align: center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-3">
+                                    <div class="form-group">
+                                            <h4><strong>Selecione o Game</strong> </h4>
+                                            <select   {% if dados.jogo %} {{dados.jogo}} {% else %} onchange="my()"   {% endif %} class="form-control" id="sel" name="jogo">
+                                                <option >{% if dados.jogo %} {{dados.jogo}}{% else %} Selecione s{% endif %}</option>
+                                                <option>League of Legends</option>
+                                                <option >Pro Evolution Soccer</option>
+                                                <option>Couter-Strike 1.6</option>
+                                            </select>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+            <br><br>
+            <div id="teste">  </div>
+            <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">
+                                    <div class="form-group  {% if erros.nome_lider %} has-error {% endif %}">
+                                            <label for="exampleInputEmail1" id="lider">Nome do Líder <b style="color: red">*</b></label>
+                                            <input type="text" value="{{ dados.nome_lider }}" name="nome_lider" class="form-control" id="exampleInputEmail1" placeholder="Nome da Equipe">
+                                            {% if erros.nome_lider %}<strong style="color: red">Campo é obrigatório</strong>{% endif %}
+                                    </div>
+                            </div>
+                            <div class="col-sm-4">
+                                    <div class="form-group  {% if erros.cpf or verificada.cpf  %} has-error {% endif %}">
+                                            <label for="exampleInputPassword1">CPF <b style="color: red">*</b></label>
+                                            <input type="text" value="{{ dados.cpf }}" name="cpf" class="form-control" id="datemask" placeholder="CPF" data-inputmask='"mask": "999.999.999-99"' data-mask>
+                                                {% if erros.cpf %}<strong style="color: red">Campo é obrigatório</strong>{% endif %}
+                                                {% if verificada.cpf %}<strong style="color: red">CPF já inscrito</strong>{% endif %}
+                                        </div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                    </div>
+                  
+                    <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-4">
+                                        <div class="form-group  {% if erros.email %} has-error {% endif %}">
+                                                <label for="exampleInputEmail1" id="lider">E-mail<b style="color: red">*</b></label>
+                                                <input type="email" value="{{ dados.email }}" name="email" class="form-control" id="exampleInputEmail1" placeholder="E-mail">
+                                                {% if erros.email %}<strong style="color: red">Campo é obrigatório</strong>{% endif %}
+                                        </div>
+                                        <div class="form-group  {% if erros.nome_equipe %} has-error {% endif %}">
+                                                <label for="exampleInputEmail1" id="lider">Nome da Equipe <b style="color: red">*</b></label>
+                                                <input type="text" value="{{ dados.nome_equipe }}" name="nome_equipe" class="form-control" id="exampleInputEmail1" placeholder="Nome da Equipe">
+                                                {% if erros.nome_equipe %}<strong style="color: red">Campo é obrigatório</strong>{% endif %}
+                                        </div>
+                                </div>
+                                <div class="col-sm-4">
+                                        <div class="form-group  {% if erros.cpf or verificada.cpf  %} has-error {% endif %}">
+                                                <label for="exampleInputPassword1">Telefone <b style="color: red">*</b></label>
+                                                <input type="text" value="{{ dados.telefone }}" name="telefone" class="form-control" id="datemask" placeholder="CPF" data-inputmask='"mask": "(99) 999999999"' data-mask>
+                                                    {% if erros.telefone %}<strong style="color: red">Campo é obrigatório</strong>{% endif %}
+                                                    {% if verificada.telefone %}<strong style="color: red">Telefone já inscrito</strong>{% endif %}
+                                            </div>
+                                </div>
+                                <div class="col-sm-2"></div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                                <h3 style="text-align: center"><strong>Membros da Equipe</strong> </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-4">
+                                        <div class="form-group">
+                                                <label for="exampleInputEmail1" id="lider">Participante 1</label>
+                                                <input type="text" name="pa1" class="form-control" id="exampleInputEmail1" placeholder="Participante 1">
+                                                
+                                        </div>
+                                </div>
+                                <div class="col-sm-4">
+                                        <div class="form-group  ">
+                                                <label for="exampleInputEmail1" id="lider">Participante 2</label>
+                                                <input type="text" name="pa2" class="form-control" id="exampleInputEmail1" placeholder="Participante 2">
+                                             
+                                        </div>
+                                </div>
+                                <div class="col-sm-2"></div>
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-4">
+                                        <div class="form-group ">
+                                                <label for="exampleInputEmail1" id="lider">Participante 3</label>
+                                                <input type="text" name="pa3"  class="form-control" id="exampleInputEmail1" placeholder="Participante 3">
+                                           
+                                        </div>
+                                </div>
+                                <div class="col-sm-4">
+                                        <div class="form-group ">
+                                                <label for="exampleInputEmail1" id="lider">Participante 4</label>
+                                                <input type="text" name="pa4"  class="form-control" id="exampleInputEmail1" placeholder="Participante 4">
+                                                
+                                         </div>  
+                                </div>
+                                <div class="col-sm-2"></div>
+                            </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-4">
+                                        <div class="form-group ">
+                                                <label for="exampleInputEmail1" id="lider">Participante 5</label>
+                                                <input type="text" name="pa5"  class="form-control" id="exampleInputEmail1" placeholder="Participante 5">
+                                              
+                                        </div>
+                                </div>
+                                <div class="col-sm-4">
+                                        <div class="form-group ">
+                                                <label for="exampleInputEmail1" id="lider">Participante 6</label>
+                                                <input type="text" name="pa6"  class="form-control" id="exampleInputEmail1" placeholder="Participante 5">
+                                              
+                                        </div>
+                                </div>
+                                <div class="col-sm-6"></div>
+                            </div>
+                    </div>
+                    
+                    <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-5" >
+            
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-info btn-fill" style="margin-left: 2%; "><strong>Inscrever</strong></button>
+                                    <a href="/" class="btn btn-danger btn-fill" style="color: white; margin-left: 2%"><strong>Cancelar</strong></a>
+                                </div>
+            
+                            <div class="col-sm-8"></div>
+                        </div>
+                    </div>
+                </div>    
+      
+           
+           
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock content %}
+{% block footer %}
+{% endblock footer %}

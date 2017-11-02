@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h1 class="logo cursive lo" style="margin-top: 10%; font-family: cs; font-size: 300%">
+    Team DeepWeek
+</h1>
+<br>
+<div class="content">
+
+    <div class="row">
+
+        <form action="/contato" role="form" method="post" style="color: white;">
+            <div class="row">
+                <div class="col-sm-12" style="text-align: center">
+                    <h3><strong>Fale conosco</strong></h3>
+                </div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                        <div class="col-sm-12">
+                            <div class="form-group {% if erros.nome %} has-error {% endif %}">
+                                <label for="inputError1"  >Nome completo <b style="color: red">*</b></label>
+                                <input type="text" value="{{dados.nome }}" name="nome" class="form-control" id="inputError1" placeholder="Nome">
+                                {% if erros.nome %}<strong style="color: red">Campo é obrigatório</strong>{% endif %}
+                            </div>
+                        </div>    
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+             <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                        <div class="col-sm-12">
+                           <div class="form-group  {% if erros.email %} has-error {% endif %}">
+                                <label for="exampleInputEmail1">Email <b style="color: red">*</b></label>
+                                <input type="email" value="{{dados.email }}" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                 {% if erros.email %}<strong style="color: red">Campo é obrigatório</strong>{% endif %}
+                            </div>
+                        </div>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                     <div class="form-group  {% if erros.menssagem %} has-error {% endif %}" style="padding: 4%">
+                        <label for="exampleInputPassword1">Mensagem <b style="color: red">*</b></label>
+                        <textarea  name="menssagem" value="{{dados.menssagem }}"  class="form-control"  rows="4" cols="40" placeholder="Digite sua mensagem"></textarea>
+                         {% if erros.menssagem %}<strong style="color: red">Campo é obrigatório</strong>{% endif %}
+                        <br>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-info btn-fill"><strong>Enviar</strong></button>
+                            <a href="/" class="btn btn-danger btn-fill"  style="color: white; margin-left: 2%"><strong>Cancelar</strong></a>
+                        </div>
+                         {% if form.telefone.errors %}<strong style="color: red">Campo é obrigatório</strong>{% endif %}
+                    </div>
+                </div>
+            <div class="col-sm-4"></div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock content %}
+{% block footer %}
+{% endblock footer %}

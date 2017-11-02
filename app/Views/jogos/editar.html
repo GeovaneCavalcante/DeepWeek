@@ -1,0 +1,177 @@
+{% extends "account/base.html" %} 
+{% block title %}
+  <title>DeepWeek | Editar</title>
+{% endblock %} 
+{% block li %}
+<li><a href="/admin/inscricoes/criar"><i class="fa fa-user-plus"></i> Inscrever</a></li>
+<li ><a href="/admin/inscricoes"><i class="fa fa-edit"></i> Lista de inscrições</a></li>
+{% endblock %}
+{% block contentheader %}
+<h1>
+        Inscrições
+        <small>Editar</small>
+    </h1>
+<ol class="breadcrumb">
+  <li><a href="#"><i class="fa fa-user-plus"></i>Inscrições</a></li>
+  <li class="active">Editar</li>
+</ol>
+{% endblock %} 
+{% block content %} 
+
+<div class="alert alert-info alert-dismissible">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <h4><i class="icon fa fa-info"></i> Alerta ao alterar os dados</h4> 
+  Atualizando as informações será sobreescrito as antigas informações na base de dados!
+</div>
+<form action="/admin/inscricoes/jogos/editar" method="post" >
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-primary ">
+      <div class="box-header with-border">
+        <h1 class="box-title">Ficha de inscrição</h1>
+      </div>
+      <div class="row">
+          <div class="col-md-4">
+            <div class="box-body">
+              <div class="form-group ">
+                <label for="exampleInputEmail1">Nome Líder </label>
+                <input value="{{inscricao.nome_lider}}"   name="nome_lider" type="text" class="form-control" id="exampleInputEmail1" placeholder="Nome Líder"> 
+                {% if erros["nome"] %} <span class="help-block">Nome é obrigatório</span> {% endif %}
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Situação</label>
+                <input value="{% if inscricao.status_pagamento %}{{ inscricao.status_pagamento }}{% else%} Não pago {% endif%}" name="status_pagamento"   type="text" class="form-control" id="exampleInputPassword1" placeholder="Situação">
+              </div>
+              <div class="form-group ">
+              <label for="exampleInputEmail1">Tipo da inscrição</label>
+                <input value="{{inscricao.tipo_inscricao }}"   name="tipo_inscricao" type="text" class="form-control" id="exampleInputEmail1" placeholder="Tipo inscrição">
+              </div>
+              <div class="form-group ">
+                <label for="exampleInputEmail1">Número da transação</label>
+                <input {% if inscricao.numero_transacao == inscricao.cpf %}{% else %}value="{{inscricao.numero_transacao }}"{% endif %}   name="numero_transacao" type="text" class="form-control" id="exampleInputEmail1" placeholder="Numero da transação"> 
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputEmail1">
+                       CPF</label>
+                  <input value="{{inscricao.cpf}}"   name="cpf" type="text"  class="form-control" id="exampleInputEmail1" placeholder="CPF" data-inputmask='"mask": "999.999.999-99"' data-mask> {% if erros["cpf"] %} <span class="help-block">CPF é obrigatório</span>                    {% endif %} {% if exist["cpf"] %} <span class="help-block">CPF já está cadastrado</span> {% endif %}
+                </div>
+          
+                <div class="form-group">
+                    <label for="">Jogo</label>
+                    <select class="form-control" id="sel" name="jogo">
+                        <option>{{inscricao.jogo}}</option>
+                        <option>League of Legends</option>
+                        <option >Pro Evolution Soccer</option>
+                        <option>Couter-Strike 1.6</option>
+                    </select>
+            </div>
+              
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-12">
+                  
+                 
+                  <div class="form-group">
+                      <label for="exampleInputPassword1">Email</label>
+                      <input value="{{ inscricao.email }}" name="email"  type="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
+                    </div>
+                  <div class="form-group ">
+                      <label for="exampleInputEmail1">Nome da Equipe</label>
+                      <input value="{{inscricao.nome_equipe }}"   name="nome_equipe" type="text" class="form-control" id="exampleInputEmail1" placeholder="Nome da Equipe"> 
+                      {% if erros["nome_equipe"] %} <span class="help-block">Nome é obrigatório</span> {% endif %}
+                    </div>
+                  <div class="form-group">
+                    <label>Participante 1</label>
+                    <input type="text" name="pa1"  value="{{inscricao.pa1}}" class="form-control">
+                  </div>
+                  <div class="form-group">
+                      <label>Participante 2</label>
+                      <input type="text"  name="pa2"  value="{{inscricao.pa2}}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Participante 3</label>
+                        <input type="text"  name="pa3"  value="{{inscricao.pa3}}" class="form-control">
+                      </div>
+                      <div class="form-group">
+                          <label>Participante 4</label>
+                          <input type="text"   name="pa4" value="{{inscricao.pa4}}" class="form-control">
+                        </div>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="box-body">
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Participante 5</label>
+                        <input type="text"   name="pa5" value="{{inscricao.pa5}}" class="form-control">
+                      </div>
+                      <div class="form-group">
+                          <label>Participante 6</label>
+                          <input type="text"  name="pa6"  value="{{inscricao.pa6}}" class="form-control">
+                        </div>
+                        
+                  <div class="form-group">
+                    <label>Telefone</label>
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-phone"></i>
+                      </div>
+                      <input value="{{ inscricao.telefone }}"   name="telefone" type="text" class="form-control" data-inputmask='"mask": "(99) 99999-9999"' data-mask>
+                    </div>
+                    <!-- /.input group -->
+                  </div>
+
+                  <div class="form-group">
+                    <label> Data Inscrição</label>
+
+                    <div class="input-group">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+
+                      </div>
+                      <input value="{{inscricao.data_criacao}}"   name="data_criacao" type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                    </div>
+            
+                  </div>
+
+                  <div class="form-group">
+                      <label> Data de Modificação da inscrição</label>
+  
+                      <div class="input-group">
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+  
+                        </div>
+                        <input value="{{inscricao.data_modificacao}}"  disabled name="data_modificacao" type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+                      </div>
+              
+                    </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Número da inscrição</label>
+                    <input value="{{ inscricao.id }}" disabled name="id"   type="text" class="form-control" id="exampleInputPassword1" placeholder="Email">
+                    <input type="hidden" value="{{ inscricao.id }}"  name="id"   type="text" class="form-control" id="exampleInputPassword1" placeholder="Email">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="box-footer">
+              <button type="submit" class="btn btn-primary pull-left" style="margin-right: 1%">Cadastrar</button>
+              <a href="/admin/inscricoes/jogos" class="btn btn-danger pull-left">Cancelar</a>
+            </div>
+          </div>
+       
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+{% endblock %}

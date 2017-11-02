@@ -1,0 +1,62 @@
+<div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-4">
+                                <div class="form-group  {% if erros.nome_lider %} has-error {% endif %}">
+                                        <label for="exampleInputEmail1" id="lider">Nome do Líder <b style="color: red">*</b></label>
+                                        <input type="text" value="{{ dados.nome_lider }}" name="nome_lider" class="form-control" id="exampleInputEmail1" placeholder="Nome da Equipe">
+                                        {% if erros.nome_lider %}<strong style="color: red">Campo é obrigatório</strong>{% endif %}
+                                </div>
+                        </div>
+                        <div class="col-sm-4">
+                                <div class="form-group  {% if erros.cpf or verificada.cpf  %} has-error {% endif %}">
+                                        <label for="exampleInputPassword1">CPF <b style="color: red">*</b></label>
+                                        <input type="text" value="{{ dados.cpf }}" name="cpf" class="form-control" id="datemask" placeholder="CPF" data-inputmask='"mask": "999.999.999-99"' data-mask>
+                                            {% if erros.cpf %}<strong style="color: red">Campo é obrigatório</strong>{% endif %}
+                                            {% if verificada.cpf %}<strong style="color: red">CPF já inscrito</strong>{% endif %}
+                                    </div>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                </div>
+              
+                <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">
+                                    <div class="form-group  {% if erros.email %} has-error {% endif %}">
+                                            <label for="exampleInputEmail1" id="lider">E-mail<b style="color: red">*</b></label>
+                                            <input type="email" value="{{ dados.email }}" name="email" class="form-control" id="exampleInputEmail1" placeholder="E-mail">
+                                            {% if erros.email %}<strong style="color: red">Campo é obrigatório</strong>{% endif %}
+                                    </div>
+                            </div>
+                            <div class="col-sm-4">
+                                    <div class="form-group  {% if erros.cpf or verificada.cpf  %} has-error {% endif %}">
+                                            <label for="exampleInputPassword1">Telefone <b style="color: red">*</b></label>
+                                            <input type="text" value="{{ dados.telefone }}" name="telefone" class="form-control" id="datemask" placeholder="CPF" data-inputmask='"mask": "(99) 999999999"' data-mask>
+                                                {% if erros.telefone %}<strong style="color: red">Campo é obrigatório</strong>{% endif %}
+                                                {% if verificada.telefone %}<strong style="color: red">Telefone já inscrito</strong>{% endif %}
+                                        </div>
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </div>
+                </div>
+                
+                <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-5" >
+        
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-info btn-fill" style="margin-left: 2%; "><strong>Inscrever</strong></button>
+                                <a href="/" class="btn btn-danger btn-fill" style="color: white; margin-left: 2%"><strong>Cancelar</strong></a>
+                            </div>
+        
+                        <div class="col-sm-8"></div>
+                    </div>
+                </div>
+            </div>    
+  
+       
+       
+        </div>
